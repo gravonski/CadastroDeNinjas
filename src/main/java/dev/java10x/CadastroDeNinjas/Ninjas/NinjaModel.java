@@ -1,6 +1,11 @@
-package dev.java10x.CadastroDeNinjas;
+package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+import jdk.dynalink.linker.LinkerServices;
+import org.hibernate.mapping.Join;
+
+import java.util.List;
 
 //Entity: Transforma uma classe comum em uma entidade no BD
 @Entity
@@ -13,6 +18,10 @@ public class NinjaModel {
     private String nome;
     private String email;
     private int idade;
+    //Um ninja tem uma única missão
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")
+    private MissoesModel missoes;
 
     public NinjaModel() {
     }
