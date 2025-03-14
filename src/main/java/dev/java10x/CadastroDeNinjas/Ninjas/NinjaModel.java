@@ -41,7 +41,4 @@ public class NinjaModel {
     @JoinColumn(name = "missoes_id")
     private MissoesModel missoes;
 
-    public NinjaModel() {
-    }
-
 }
