@@ -25,8 +25,8 @@ public class MissoesController {
 
     //Criação das Missões
     @PostMapping("/criar")
-    public String criarMissao() {
-        return "Missões do ninja criadas";
+    public MissoesModel missoesCrir(@RequestBody MissoesModel missoesModel){
+        return missoesService.criarMissoes(missoesModel);
     }
 
     //Alteração das Missões
