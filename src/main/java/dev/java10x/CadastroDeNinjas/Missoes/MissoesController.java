@@ -23,6 +23,12 @@ public class MissoesController {
         return missoesService.listarMissoes();
     }
 
+    //Listagem de Ninjas por ID
+    @GetMapping("/listar/{id}")
+    public MissoesModel listarNinjasPorId(@PathVariable Long id){
+        return missoesService.buscarMissoesPorId(id);
+    }
+
     //Criação das Missões
     @PostMapping("/criar")
     public MissoesModel missoesNinja(@RequestBody MissoesModel missoesModel){
@@ -36,8 +42,8 @@ public class MissoesController {
     }
 
     //Deletar Missões
-    @DeleteMapping("/deletar")
-    public String deletaMissoes(){
-        return "Missões deletadas";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarMissoes (@PathVariable Long id){
+        missoesService.deletarMissoesPorID(id);
     }
 }
