@@ -35,5 +35,13 @@ public class NinjaService {
         return listarNinjasPorId(id);
     }
 
-    //alterar
+    //alterar ninjas
+    public NinjaModel atualizarNinjasPorId(Long id, NinjaModel ninjaRequisicao) {
+        if (ninjaRepository.existsById(id)) {
+            ninjaRequisicao.setId(id);
+            return ninjaRepository.save(ninjaRequisicao);
+        } else {
+            return null;
+        }
+    }
 }

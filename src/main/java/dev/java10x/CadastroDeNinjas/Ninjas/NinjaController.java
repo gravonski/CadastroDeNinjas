@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import jakarta.persistence.Id;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,9 +40,9 @@ public class NinjaController {
     }
 
     //Alterar dados dos Ninjas(UPTADE)
-    @PutMapping("/alterarID")
-    public String alterarNinjasId() {
-        return "Alterando Ninjas por ID";
+    @PutMapping("/alterar/{id}")
+    public NinjaModel alterarNinjaID(@PathVariable Long id, @RequestBody NinjaModel ninjaRequisicao) {
+        return ninjaService.atualizarNinjasPorId(id, ninjaRequisicao);
     }
 
     //Deletar um Ninja(DELETE)
