@@ -21,7 +21,7 @@ public class NinjaController {
         return "Essa é a minha primeira mensagem nessa rota";
     }
 
-    //Adicionar Ninjas(CREATE)
+    //Criar Ninjas(CREATE)
     @PostMapping("/criar")
     public NinjaDTO criarNovoNinja(@RequestBody NinjaDTO ninja) {
         return ninjaService.criarNovoNinja(ninja);
@@ -29,19 +29,19 @@ public class NinjaController {
 
     //Mostrar todos os Ninjas(READ)
     @GetMapping("/todos")
-    public List<NinjaModel> listarNinjas() {
+    public List<NinjaDTO> listarNinjas() {
         return ninjaService.listarNinjas();
     }
 
     //Mostrar Ninja por ID(READ)
     @GetMapping("/todos/{id}")
-    public NinjaModel listarNinjasPorId(@PathVariable Long id) {
+    public NinjaDTO listarNinjasPorId(@PathVariable Long id) {
         return ninjaService.listarNinjasPorId(id);
     }
 
     //Alterar dados dos Ninjas(UPTADE)
     @PutMapping("/alterar/{id}")
-    public NinjaModel alterarNinjaID(@PathVariable Long id, @RequestBody NinjaModel ninjaRequisicao) {
+    public NinjaDTO alterarNinjaID(@PathVariable Long id, @RequestBody NinjaDTO ninjaRequisicao) {
         return ninjaService.atualizarNinjasPorId(id, ninjaRequisicao);
     }
 
