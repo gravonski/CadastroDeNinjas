@@ -4,36 +4,41 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MissoesService {
 
     //Injeção de dependência
     private MissoesRepository missoesRepository;
+    private MissoesMapper missoesMapper;
 
-    public MissoesService(MissoesRepository missoesRepository) {
+    public MissoesService(MissoesRepository missoesRepository, MissoesMapper missoesMapper) {
         this.missoesRepository = missoesRepository;
-    }
-
-    //listar todas as missoes
-    public List<MissoesModel> listarMissoes(){
-        return missoesRepository.findAll();
-    }
-
-    //listar missões por ID
-    public MissoesModel buscarMissoesPorId(Long id){
-        Optional<MissoesModel> missoes = missoesRepository.findById(id);
-        return missoes.orElse(null);
+        this.missoesMapper = missoesMapper;
     }
 
     //criar nova missao
-    public MissoesModel criarMissoes(MissoesModel missoesModel){
-        return missoesRepository.save(missoesModel);
+    public MissoesDTO criarMissoes(MissoesDTO missoesDTO){
+        MissoesModel missoes = missoesMapper.map(missoesDTO);
+        missoes = missoesRepository.save(missoes);
+        return missoesMapper.map(missoes);
+    }
+
+    //listar todas as missoes
+    public List<MissoesDTO> listarMissoes(){
+        List<MissoesModel> missoes = missoesRepository.findAll();
+        return missoes.stream().map(missoesMapper::map).collect(Collectors.toList());
+    }
+
+    //listar missões por ID
+    public MissoesDTO buscarMissoesPorId(Long id){
+        Optional<MissoesModel> missoesPorId = missoesRepository.findById(id);
+        return missoesPorId.map(missoesMapper::map).orElse(null);
     }
 
     //deletar uma missão por ID
-    public MissoesModel deletarMissoesPorID(Long id){
+    public void deletarMissoesPorID(Long id){
         missoesRepository.deleteById(id);
-        return buscarMissoesPorId(id);
     }
 }

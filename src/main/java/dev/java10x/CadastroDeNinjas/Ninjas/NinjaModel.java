@@ -21,10 +21,10 @@ public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "id_ninja_sequencial")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "nome_ninja")
+    @Column(name = "nome")
     private String nome;
 
     @Column(unique = true)
@@ -33,12 +33,14 @@ public class NinjaModel {
     @Column(name = "img_url")
     private String imgUrl;
 
-    @Column(name = "idade_ninja")
-    private int idade;
+    @Column(name = "idade")
+    private Integer idade;
 
-    //Um ninja tem uma única missão
+    @Column(name = "rank")
+    private String rank;
+
     @ManyToOne
-    @JoinColumn(name = "missoes_id")
+    @JoinColumn(name = "id_missoes")
     private MissoesModel missoes;
 
 }
