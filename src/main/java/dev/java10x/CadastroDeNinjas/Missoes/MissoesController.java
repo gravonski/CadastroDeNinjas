@@ -1,5 +1,8 @@
 package dev.java10x.CadastroDeNinjas.Missoes;
 
+import dev.java10x.CadastroDeNinjas.Ninjas.NinjaDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,20 +22,29 @@ public class MissoesController {
 
     //Criação das Missões
     @PostMapping("/criar")
-    public MissoesDTO missoesNinja(@RequestBody MissoesDTO missoes){
-        return missoesService.criarMissoes(missoes);
+    public ResponseEntity<String> missoesNinja(@RequestBody MissoesDTO missoes){
+        MissoesDTO novaMissao = missoesService.criarMissoes(missoes);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Missão criada com sucesso!");
     }
 
     //Listagem das Missões
     @GetMapping("/listar")
-    public List<MissoesDTO> listarMissoes(){
-        return missoesService.listarMissoes();
+    public ResponseEntity<List<MissoesDTO>> listarMissoes() {
+        List<MissoesDTO> missoes = missoesService.listarMissoes();
+        return ResponseEntity.ok(missoes);
     }
 
     //Listagem de Ninjas por ID
     @GetMapping("/listar/{id}")
-    public MissoesDTO listarNinjasPorId(@PathVariable Long id){
-        return missoesService.buscarMissoesPorId(id);
+    public ResponseEntity<?> listarNinjasPorId(@PathVariable Long id){
+        MissoesDTO missoes = missoesService.buscarMissoesPorId(id);
+        if(missoes != null){
+            return ResponseEntity.ok(missoes);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Missão com ID " + id + " não encontrada!");
+        }
     }
 
     //Alteração das Missões
@@ -43,7 +55,13 @@ public class MissoesController {
 
     //Deletar Missões
     @DeleteMapping("/deletar/{id}")
-    public void deletarMissoes (@PathVariable Long id){
-        missoesService.deletarMissoesPorID(id);
+    public ResponseEntity<String> deletarMissoes (@PathVariable Long id){
+        MissoesDTO missoes = missoesService.buscarMissoesPorId(id);
+        if(missoes != null){
+            return ResponseEntity.ok("Missão deletada com sucesso!");
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Missão com ID " + id + " não encontrada!");
+        }
     }
 }
