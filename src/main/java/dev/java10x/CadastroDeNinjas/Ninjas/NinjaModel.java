@@ -1,15 +1,8 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
-import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
+import dev.java10x.CadastroDeNinjas.Missoes.java.MissoesModel;
 import jakarta.persistence.*;
-import jdk.dynalink.linker.LinkerServices;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.mapping.Join;
-
-import java.util.List;
+import lombok.*;
 
 //Entity: Transforma uma classe comum em uma entidade no BD
 @Entity
@@ -18,6 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "missoes")
+@Getter
+@Setter
 public class NinjaModel {
 
     @Id

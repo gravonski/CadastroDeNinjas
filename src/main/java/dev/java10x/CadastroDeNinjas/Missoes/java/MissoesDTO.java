@@ -1,4 +1,4 @@
-package dev.java10x.CadastroDeNinjas.Missoes;
+package dev.java10x.CadastroDeNinjas.Missoes.java;
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
