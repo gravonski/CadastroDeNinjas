@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Ninja</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #f5f5f5;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+            font-size: 2.2rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #9fa8da;
+            margin-bottom: 6px;
+        }
+
+        input, select {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2a2a2a;
+            color: #f5f5f5;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border: 2px solid #3f51b5;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button, a {
+            padding: 12px 24px;
+            border: none;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-salvar {
+            background-color: #43a047;
+        }
+
+        .btn-salvar:hover {
+            background-color: #2e7d32;
+            transform: scale(1.05);
+        }
+
+        .btn-voltar {
+            background-color: #1e88e5;
+        }
+
+        .btn-voltar:hover {
+            background-color: #1565c0;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Editar Ninja</h1>
+
+    <form th:action="@{/ninjas/ui/editar/{id}(id=${ninja.id})}" method="post" th:object="${ninja}">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" th:field="*{nome}" required>
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" name="idade" th:field="*{idade}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:field="*{email}" required>
+
+        <label for="rank">Rank:</label>
+        <input type="text" id="rank" name="rank" th:field="*{rank}" required>
+
+        <label for="imgUrl">Imagem (URL):</label>
+        <input type="text" id="imgUrl" name="imgUrl" th:field="*{imgUrl}">
+
+        <!-- Você pode adicionar campos para missão também, se quiser -->
+
+        <div class="buttons">
+            <a th:href="@{/ninjas/ui}" class="btn-voltar">Voltar</a>
+            <button type="submit" class="btn-salvar">Salvar Alterações</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

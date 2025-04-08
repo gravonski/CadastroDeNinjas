@@ -143,8 +143,8 @@
             <span th:if="${ninja.missoes == null}">Sem missões cadastradas</span>
         </td>
         <td>
-            <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Ver detalhes</a>
-            <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Alterar</a>
+            <a th:href="@{/ninjas/ui/todos/{id}(id=${ninja.id})}">Ver detalhes</a>
+            <a th:href="@{/ninjas/ui/editar/{id}(id=${ninja.id})}">Alterar</a>
             <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}">Deletar</a>
         </td>
     </tr>
