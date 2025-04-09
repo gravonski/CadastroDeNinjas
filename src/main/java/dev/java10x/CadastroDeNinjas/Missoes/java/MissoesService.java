@@ -37,6 +37,19 @@ public class MissoesService {
         return missoesPorId.map(missoesMapper::map).orElse(null);
     }
 
+    //alterar missoes
+    public MissoesDTO atualizarMissoes(Long id, MissoesDTO missoesDTO){
+        Optional<MissoesModel> missoesPorIdExistente = missoesRepository.findById(id);
+        if (missoesPorIdExistente.isPresent()) {
+            MissoesModel missoesAtualizada = missoesMapper.map(missoesDTO);
+            missoesAtualizada.setId(id);
+            MissoesModel atualizado = missoesRepository.save(missoesAtualizada);
+            return missoesMapper.map(atualizado);
+        } else {
+            return null;
+        }
+    }
+
     //deletar uma missão por ID
     public void deletarMissoesPorID(Long id){
         missoesRepository.deleteById(id);

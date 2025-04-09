@@ -39,11 +39,6 @@ public class NinjaService {
         return ninjaPorId.map(ninjaMapper::map).orElse(null);
     }
 
-    //deletar o ninja por id
-    public void deletarNinjasPorId(Long id) {
-        ninjaRepository.deleteById(id);
-    }
-
     //alterar ninjas
     public NinjaDTO atualizarNinjasPorId(Long id, NinjaDTO ninjaRequisicao) {
         Optional<NinjaModel> ninjaExistente = ninjaRepository.findById(id);
@@ -54,5 +49,10 @@ public class NinjaService {
             return ninjaMapper.map(atualizado);
         } else
             return null;
+    }
+
+    //deletar o ninja por id
+    public void deletarNinjasPorId(Long id) {
+        ninjaRepository.deleteById(id);
     }
 }

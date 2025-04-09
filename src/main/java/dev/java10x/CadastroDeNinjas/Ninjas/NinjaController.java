@@ -69,7 +69,7 @@ public class NinjaController {
         }
     }
 
-    //Alterar dados dos Ninjas(UPTADE)
+    //Alterar dados dos Ninjas por ID(UPTADE)
     @PutMapping("/alterar/{id}")
     @Operation (summary = "Alterar um Ninja por Id", description = "Rota que altera um Ninja especifíco a partir do ID próprio")
     @ApiResponses(value = {

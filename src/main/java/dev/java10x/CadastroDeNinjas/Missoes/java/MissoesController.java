@@ -46,13 +46,19 @@ public class MissoesController {
         }
     }
 
-    //Alteração das Missões
-    @PutMapping("/alterar")
-    public String alteraMissoes(){
-        return "Missões alteradas";
+    //Alteração das Missões por ID
+    @PutMapping("/alterar/{id}")
+    public String alteraMissoes( @PathVariable Long id, @RequestBody MissoesDTO missoes){
+        MissoesDTO missaoAlterada = missoesService.atualizarMissoes(id, missoes);
+        if(missaoAlterada != null){
+            return missaoAlterada.toString();
+        } else {
+            return null;
+        }
+
     }
 
-    //Deletar Missões
+    //Deletar Missões por ID
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletarMissoes (@PathVariable Long id){
         MissoesDTO missoes = missoesService.buscarMissoesPorId(id);
