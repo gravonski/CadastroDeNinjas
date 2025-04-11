@@ -51,7 +51,8 @@ public class MissoesService {
     }
 
     //deletar uma missão por ID
-    public void deletarMissoesPorID(Long id){
+    public void deletarMissoes (Long id){
         missoesRepository.deleteById(id);
     }
+
 }
