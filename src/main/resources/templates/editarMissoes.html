@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Missão</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #f5f5f5;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+      font-size: 2.2rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      color: #9fa8da;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      background-color: #2a2a2a;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .btn-salvar {
+      padding: 12px 24px;
+      background-color: #388e3c;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-salvar:hover {
+      background-color: #2e7d32;
+      transform: scale(1.05);
+    }
+
+    .btn-cancelar {
+      padding: 12px 24px;
+      background-color: #1976d2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-cancelar:hover {
+      background-color: #1565c0;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Editar Missão</h1>
+
+  <form th:action="@{/missoes/ui/alterar/{id}(id=${missoes.id})}" method="post">
+    <div class="form-group">
+      <label for="nome">Nome da Missão:</label>
+      <input type="text" id="nome" name="nome" th:value="${missoes.nome}" required />
+    </div>
+
+    <div class="form-group">
+      <label for="dificuldade">Dificuldade:</label>
+      <select id="dificuldade" name="dificuldade" required>
+        <option value="Fácil" th:selected="${missoes.dificuldade == 'Fácil'}">Fácil</option>
+        <option value="Média" th:selected="${missoes.dificuldade == 'Média'}">Média</option>
+        <option value="Difícil" th:selected="${missoes.dificuldade == 'Difícil'}">Difícil</option>
+      </select>
+    </div>
+
+    <div class="buttons">
+      <button type="submit" class="btn-salvar">Salvar</button>
+      <a href="#" class="btn-cancelar">Cancelar</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

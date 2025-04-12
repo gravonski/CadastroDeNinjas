@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Missões</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #f5f5f5;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+            font-size: 2.4rem;
+        }
+
+        .missao-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .missao-card {
+            background-color: #1e1e1e;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease;
+        }
+
+        .missao-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .missao-card h2 {
+            font-size: 1.4rem;
+            color: #9fa8da;
+            margin-bottom: 10px;
+        }
+
+        .missao-card p {
+            margin-bottom: 8px;
+        }
+
+        .missao-card ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 5px 0 10px;
+        }
+
+        .botoes {
+            margin-top: 16px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .botoes a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-detalhes {
+            background-color: #1e88e5;
+        }
+
+        .btn-detalhes:hover {
+            background-color: #1565c0;
+        }
+
+        .btn-editar {
+            background-color: #f9a825;
+        }
+
+        .btn-editar:hover {
+            background-color: #f57f17;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Missões Cadastradas</h1>
+
+    <div class="missao-grid">
+        <div class="missao-card" th:each="missao : ${missoes}">
+            <h2 th:text="${missao.nome}">Nome da Missão</h2>
+            <p><strong>Dificuldade:</strong> <span th:text="${missao.dificuldade}"></span></p>
+
+            <div th:if="${missao.ninja != null}">
+                <p><strong>Ninjas:</strong></p>
+                <ul>
+                    <li th:each="n : ${missao.ninja}" th:text="${n.nome}">Nome do Ninja</li>
+                </ul>
+            </div>
+            <div th:if="${missao.ninja == null or #lists.isEmpty(missao.ninja)}">
+                <p><strong>Ninjas:</strong> Nenhum associado</p>
+            </div>
+
+            <div class="botoes">
+                <a th:href="@{/missoes/ui/listar/{id}(id=${missao.id})}" class="btn-detalhes">Detalhes</a>
+                <a th:href="@{/missoes/ui/alterar/{id}(id=${missao.id})}" class="btn-editar">Editar</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
