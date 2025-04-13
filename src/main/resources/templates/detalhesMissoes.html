@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Detalhes da Missão</title>
@@ -18,7 +18,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background-color: #1e1e1e;
             padding: 30px;
@@ -26,40 +26,49 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
         }
 
-        h1 {
+        h1, h2 {
             text-align: center;
-            margin-bottom: 30px;
             color: #e0e0e0;
-            font-size: 2.2rem;
-        }
-
-        .ninja-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .ninja-info img {
-            width: 180px;
-            height: 180px;
-            border-radius: 16px;
-            border: 2px solid #444;
-            object-fit: cover;
         }
 
         .info-group {
-            width: 100%;
             background: #2a2a2a;
-            padding: 16px;
+            padding: 20px;
             border-radius: 12px;
-            margin-top: 10px;
+            margin: 20px 0;
+        }
+
+        .info-group p {
+            margin-bottom: 10px;
         }
 
         .info-group strong {
-            display: inline-block;
-            width: 160px;
             color: #9fa8da;
+        }
+
+        .ninja-lista {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .ninja-card {
+            background-color: #2a2a2a;
+            padding: 16px;
+            border-radius: 12px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .ninja-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 2px solid #444;
         }
 
         .buttons {
@@ -101,21 +110,18 @@
 <div class="container">
     <h1>Detalhes da Missão</h1>
 
-    <div class="ninja-info">
-        <img th:src="${missoes.ninja.imgUrl}" alt="Imagem do Ninja">
+    <div class="info-group">
+        <p><strong>Nome:</strong> <span th:text="${missoes.nome}"></span></p>
+        <p><strong>Dificuldade:</strong> <span th:text="${missoes.dificuldade}"></span></p>
+    </div>
 
-        <div class="info-group">
-            <p><strong>Nome da Missão:</strong> <span th:text="${missoes.nome}"></span></p>
-            <p><strong>Dificuldade:</strong> <span th:text="${missoes.dificuldade}"></span></p>
-            <p><strong>Status:</strong> <span th:text="${missoes.status}"></span></p>
-            <p><strong>Descrição:</strong> <span th:text="${missoes.descricao}"></span></p>
-        </div>
-
-        <div class="info-group">
-            <p><strong>Ninja Responsável:</strong></p>
-            <p><strong>Nome:</strong> <span th:text="${missoes.ninja.nome}"></span></p>
-            <p><strong>Email:</strong> <span th:text="${missoes.ninja.email}"></span></p>
-            <p><strong>Rank:</strong> <span th:text="${missoes.ninja.rank}"></span></p>
+    <h2>Ninjas Designados</h2>
+    <div class="ninja-lista">
+        <div class="ninja-card" th:each="ninja : ${missoes.ninja}">
+            <img th:src="${ninja.imgUrl}" alt="Imagem do Ninja">
+            <p><strong th:text="${ninja.nome}"></strong></p>
+            <p><span th:text="${ninja.email}"></span></p>
+            <p><span th:text="${ninja.rank}"></span></p>
         </div>
     </div>
 

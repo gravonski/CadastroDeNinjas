@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Nova Missão</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      color: #9fa8da;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    input, select {
+      background-color: #2a2a2a;
+      color: #f5f5f5;
+    }
+
+    button {
+      background-color: #1e88e5;
+      color: white;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+
+    .voltar {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .voltar a {
+      color: #90caf9;
+      text-decoration: none;
+    }
+
+    .voltar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Cadastrar Nova Missão</h1>
+
+  <form th:action="@{/missoes/ui/cadastrar}" method="post">
+    <label for="nome">Nome da Missão:</label>
+    <input type="text" id="nome" name="nome" required>
+
+    <label for="dificuldade">Dificuldade:</label>
+    <select id="dificuldade" name="dificuldade" required>
+      <option value="Fácil">Fácil</option>
+      <option value="Média">Média</option>
+      <option value="Difícil">Difícil</option>
+    </select>
+
+    <button type="submit">Cadastrar Missão</button>
+  </form>
+
+  <div class="voltar">
+    <a th:href="@{/missoes/ui/listar}">Voltar para listagem</a>
+  </div>
+</div>
+</body>
+</html>

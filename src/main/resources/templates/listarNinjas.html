@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Ninjas</title>
     <style>
         /* Reset básico */
@@ -117,29 +118,32 @@
 <table>
     <thead>
     <tr>
-        <td>Id</td>
-        <td>Imagem</td>
-        <td>Nome</td>
-        <td>Idade</td>
-        <td>Email</td>
-        <td>Rank</td>
-        <td>Missões</td>
-        <td>Ações</td>
+        <th>Id</th>
+        <th>Imagem</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Email</th>
+        <th>Rank</th>
+        <th>Missões</th>
+        <th>Ações</th>
     </tr>
     </thead>
     <tbody>
+    <!-- Looping sobre os ninjas -->
     <tr th:each="ninja : ${ninjas}">
         <td th:text="${ninja.id}"></td>
-        <td><img th:src="${ninja.imgUrl}" width="100" height="100"></td>
+        <td><img th:src="${ninja.imgUrl}" width="100" height="100" alt="Imagem do Ninja"></td>
         <td th:text="${ninja.nome}"></td>
         <td th:text="${ninja.idade}"></td>
         <td th:text="${ninja.email}"></td>
         <td th:text="${ninja.rank}"></td>
         <td>
-                <span th:if="${ninja.missoes}">
-                    Nome: <span th:text="${ninja.missoes.nome}"></span>,
-                    Dificuldade: <span th:text="${ninja.missoes.dificuldade}"></span>
-                </span>
+            <!-- Exibir missões caso existam -->
+            <span th:if="${ninja.missoes}">
+                Nome: <span th:text="${ninja.missoes.nome}"></span>,<br>
+                Dificuldade: <span th:text="${ninja.missoes.dificuldade}"></span>
+            </span>
+            <!-- Caso o ninja não tenha missões -->
             <span th:if="${ninja.missoes == null}">Sem missões cadastradas</span>
         </td>
         <td>
