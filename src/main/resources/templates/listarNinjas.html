@@ -40,6 +40,14 @@
             color: white;
         }
 
+        div.div-missoes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            margin: 8px;
+        }
+
         th, td {
             padding: 18px;
             text-align: left;
@@ -55,10 +63,19 @@
             transition: background 0.3s ease;
         }
 
+
         img {
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid #444;
+        }
+
+        a.missoes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+
         }
 
         a {
@@ -111,6 +128,7 @@
         a:active {
             transform: scale(0.98);
         }
+
     </style>
 </head>
 <body>
@@ -154,5 +172,13 @@
     </tr>
     </tbody>
 </table>
+<div class="div-missoes">
+    <a class="missoes" th:href="@{/missoes/ui/listar}">Acessar missões</a>
+</div>
+
+<div class="div-missoes">
+    <a class="missoes" th:href="@{/ninjas/ui/criar}">Criar ninja</a>
+</div>
+
 </body>
 </html>

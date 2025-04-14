@@ -1,11 +1,10 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import dev.java10x.CadastroDeNinjas.Missoes.java.MissoesDTO;
+import dev.java10x.CadastroDeNinjas.Missoes.java.MissoesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -14,9 +13,25 @@ import java.util.List;
 public class NinjaControllerUI {
 
     private final NinjaService ninjaService;
+    private final MissoesService missoesService;
 
-    public NinjaControllerUI(NinjaService ninjaService) {
+    public NinjaControllerUI(NinjaService ninjaService, MissoesService missoesService) {
         this.ninjaService = ninjaService;
+        this.missoesService = missoesService;
+    }
+
+    @PostMapping("/criar")
+    public String criarNovoNinja(@ModelAttribute NinjaDTO ninjaDTO) {
+        ninjaService.criarNovoNinja(ninjaDTO); // Salva com os dados enviados
+        return "redirect:/ninjas/ui/todos"; // Redireciona para a listagem após salvar
+    }
+
+    @GetMapping("/criar")
+    public String mostrarFormularioCriar(Model model) {
+        model.addAttribute("ninja", new NinjaDTO()); // Para preencher os campos do formulário
+        List<MissoesDTO> missoes = missoesService.listarMissoes(); // Carregar missões para o formulário
+        model.addAttribute("missoes", missoes); // Adiciona missões ao modelo
+        return "criarNinja"; // Nome da página HTML
     }
 
     @GetMapping("/todos")
@@ -32,15 +47,18 @@ public class NinjaControllerUI {
         if (ninja != null) {
             model.addAttribute("ninja", ninja);
             return "detalhesNinja";
-        } else
+        } else {
             model.addAttribute("mensagem", "Ninja não encontrado!");
             return "listarNinjas";
+        }
     }
 
     @GetMapping("/editar/{id}")
     public String editarNinjaForm(@PathVariable Long id, Model model) {
         NinjaDTO ninja = ninjaService.listarNinjasPorId(id);
+        List<MissoesDTO> missoes = missoesService.listarMissoes(); // Carregar missões para o formulário
         model.addAttribute("ninja", ninja);
+        model.addAttribute("missoes", missoes); // Passar as missões ao modelo
         return "editarNinja";
     }
 
@@ -50,12 +68,9 @@ public class NinjaControllerUI {
         return "redirect:/ninjas/ui/todos";
     }
 
-
-
     @GetMapping("/deletar/{id}")
     public String deletarNinjasPorId(@PathVariable Long id) {
         ninjaService.deletarNinjasPorId(id);
         return "redirect:/ninjas/ui/todos";
     }
-
 }

@@ -116,16 +116,16 @@
         <input type="text" id="imgUrl" name="imgUrl" th:field="*{imgUrl}">
 
         <label for="missoes">Missão:</label>
-        <select id="missoes" name="missaoId" th:field="*{missao}">
+        <select id="missoes" name="missoes.id" th:field="*{missoes}">
             <option value="" disabled selected>Selecione uma missão</option>
             <option th:each="missao : ${missoes}"
                     th:value="${missao.id}"
-                    th:text="${missao.nome}"></option>
+                    th:text="${missao.nome}">
+            </option>
         </select>
 
-
         <div class="buttons">
-            <a th:href="@{/ninjas/ui}" class="btn-voltar">Voltar</a>
+            <a th:href="@{/ninjas/ui/todos}" class="btn-voltar">Voltar</a>
             <button type="submit" class="btn-salvar">Salvar Alterações</button>
         </div>
     </form>

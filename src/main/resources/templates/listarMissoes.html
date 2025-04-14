@@ -67,6 +67,8 @@
             margin-top: 16px;
             display: flex;
             gap: 10px;
+            align-items: center;
+            justify-content: center;
         }
 
         .botoes a {
@@ -93,6 +95,7 @@
         .btn-editar:hover {
             background-color: #f57f17;
         }
+
     </style>
 </head>
 <body>
@@ -119,6 +122,10 @@
                 <a th:href="@{/missoes/ui/alterar/{id}(id=${missao.id})}" class="btn-editar">Editar</a>
             </div>
         </div>
+    </div>
+    <div class="botoes">
+        <a th:href="@{/ninjas/ui/todos}" class="btn-detalhes">Voltar</a>
+        <a th:href="@{/missoes/ui/cadastrar}" class="btn-detalhes">Cadastrar nova missão</a>
     </div>
 </div>
 </body>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Nova Missão</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #f5f5f5;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            color: #9fa8da;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        input, select {
+            background-color: #2a2a2a;
+            color: #f5f5f5;
+        }
+
+        button {
+            background-color: #1e88e5;
+            color: white;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+        }
+
+        .voltar {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .voltar a {
+            color: #90caf9;
+            text-decoration: none;
+        }
+
+        .voltar a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Cadastrar Novo Ninja</h1>
+
+    <form th:action="@{/ninjas/ui/criar}" method="post">
+        <label for="nome">Nome do Ninja:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade" required>
+        </select>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        </select>
+
+        <label for="rank">Rank:</label>
+        <input type="text" id="rank" name="rank" required>
+        </select>
+
+        <label for="imgUrl">URL da Imagem:</label>
+        <input type="text" id="imgUrl" name="Imgurl" required>
+        </select>
+
+        <button type="submit">Cadastrar Ninja</button>
+    </form>
+
+    <div class="voltar">
+        <a th:href="@{/ninjas/ui/todos}">Voltar para listagem</a>
+    </div>
+</div>
+</body>
+</html>

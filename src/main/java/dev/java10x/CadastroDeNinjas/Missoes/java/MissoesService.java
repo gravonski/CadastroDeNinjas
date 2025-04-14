@@ -21,6 +21,11 @@ public class MissoesService {
         this.ninjaRepository = ninjaRepository;
     }
 
+    public MissoesModel buscarMissaoModelPorId(Long id) {
+        return missoesRepository.findById(id).orElse(null);
+    }
+
+
     // Salvar uma nova missão
     public void salvarNovaMissao(MissoesDTO missoesDTO) {
         MissoesModel missoes = missoesMapper.map(missoesDTO);

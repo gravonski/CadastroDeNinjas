@@ -24,6 +24,9 @@ public class NinjaDTO {
 
     private MissoesModel missoes;
 
+    private Long id_missoes;
+
+
 }
 
 
