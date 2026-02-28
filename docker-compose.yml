@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres/latest
+    container_name: cadastrocontainer
+    environment:
+      POSTGRES-DB: cadastroninjasdocker
+      POSTGRES-USER: postgres
+      POSTGRES-PASSWORD: postgres
+    ports:
+      - "5431:5432"
+    restart: always
